@@ -17,7 +17,10 @@ public class StreamTaskExercises {
      * Return the descriptions of all HIGH priority tasks in encounter order.
      */
     public List<String> highPriorityDescriptions(List<Task> tasks) {
-        throw new UnsupportedOperationException("TODO");
+        return tasks.stream()
+            .filter(t -> t.priority() == Priority.HIGH)
+            .map(t -> t.discription())
+            .toList();
     }
 
     /**
@@ -25,7 +28,12 @@ public class StreamTaskExercises {
      * Return the number of tasks in each status.
      */
     public Map<Status, Long> countByStatus(List<Task> tasks) {
-        throw new UnsupportedOperationException("TODO");
+        return tasks.stream()
+            .collect(Collectors.map(
+                t -> t.status(),
+                t -> 1,
+                (a,b) -> a + 1
+            ));
     }
 
     /**
